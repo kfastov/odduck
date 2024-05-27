@@ -1,6 +1,9 @@
 # ODDuck
 
-![ODDuck Logo](./logo.webp)
+<!-- ![ODDuck Logo](./logo.webp) -->
+<div style="text-align: center;">
+    <img src="./logo.webp" alt="ODDuck Logo" width="200"/>
+</div>
 
 ODDuck is a Telegram bot designed for the [OnlyDust](https://www.onlydust.com/) [ODHack](https://blog.onlydust.com/odhack-4-0-lets-go/) hackathon. It fetches and provides updates (not ready yet) on GitHub issues specifically tagged for the hackathon.
 You can communicate with the deployed bot [here](https://t.me/ODDuck_Bot).
