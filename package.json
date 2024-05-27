@@ -1,0 +1,16 @@
+{
+  "name": "odduck",
+  "module": "index.ts",
+  "type": "module",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@octokit/rest": "^20.1.1",
+    "dotenv": "^16.4.5",
+    "telegraf": "^4.16.3"
+  }
+}
