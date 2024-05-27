@@ -6,7 +6,7 @@ dotenv.config();
 
 const bot = new Telegraf(process.env.BOT_TOKEN as string);
 
-bot.start((ctx) => ctx.reply('Welcome! I can fetch ODHack Github issues for you.'));
+bot.start((ctx) => ctx.reply('Welcome! I can fetch ODHack Github /issues for you.'));
 bot.launch();
 
 // State
