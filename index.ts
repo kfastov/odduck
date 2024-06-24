@@ -1,6 +1,6 @@
 import { Telegraf } from 'telegraf';
 import dotenv from 'dotenv';
-import { fetchAllIssues, type Label, type Issue, labelName, findIssuesAfterTS, findLatestIssueTS } from './issues';
+import { fetchAllIssues, odHackRegex, type Issue, labelName, findIssuesAfterTS, findLatestIssueTS } from './issues';
 
 dotenv.config();
 
@@ -50,7 +50,7 @@ bot.command('issues', async (ctx) => {
         const issuesMsg = value.map(issue => {
 
             const labels = issue.labels.map(labelName)
-            .filter((name): name is string => name?.length != 0 && name?.toLowerCase() != 'odhack')
+            .filter((name): name is string => name?.length != 0 && !odHackRegex.test(name ?? ''))
             .map(escapeMarkdownV2);
 
             const formattedLabels = labels.length ? ` \\(${labels.join(', ')}\\)` : '';

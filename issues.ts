@@ -10,6 +10,8 @@ type Repo = {
     repo: string;
 };  
 
+export const odHackRegex = /od\s*hack/i;
+
 const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
 
 const fetchIssuesForProject = async (owner: string, repo: string) => {
@@ -22,9 +24,9 @@ const fetchIssuesForProject = async (owner: string, repo: string) => {
         });
         return issues.data.filter(issue => !issue.pull_request && !issue.assignee && (
             // Check if the issue has the 'odhack' label
-            issue.labels.map(label => typeof label == 'string' ? label : label.name).some(label => label?.toLowerCase() === 'odhack') ||
+            issue.labels.map(label => typeof label == 'string' ? label : label.name).some(label => odHackRegex.test(label ?? '')) ||
             // Or if the issue title contains 'odhack'
-            issue.title.toLowerCase().includes('odhack')
+            odHackRegex.test(issue.title ?? '')
         ));
     } catch (error) {
         console.error('Error fetching issues:', error);
