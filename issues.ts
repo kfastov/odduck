@@ -49,16 +49,12 @@ function parseGitHubUrl(url: string): { owner: string; repo: string } | null {
   }
   
   import { promises as fs } from 'fs';
+import getRepoUrls from './onlydust';
 
 
 // Function to load and process the repos.json file
-async function loadAndProcessRepos(filePath: string): Promise<Repo[]> {
+async function loadAndProcessRepos(urls: string[]): Promise<Repo[]> {
   try {
-    // Read the file
-    const data = await fs.readFile(filePath, 'utf-8');
-    // Parse JSON data
-    const urls: string[] = JSON.parse(data);
-    
     // Process each URL
     const repos: Repo[] = urls.map(url => {
       const parsed = parseGitHubUrl(url);
@@ -77,7 +73,9 @@ async function loadAndProcessRepos(filePath: string): Promise<Repo[]> {
   }
 }
 
-const repos = await loadAndProcessRepos('repos.json');
+const urls = await getRepoUrls();
+
+const repos = await loadAndProcessRepos(urls);
 
 export const fetchAllIssues = async (): Promise<Map<string, Issue[]>> => {
     const allIssues = new Map<string, Issue[]>();

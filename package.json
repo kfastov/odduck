@@ -11,7 +11,9 @@
   },
   "dependencies": {
     "@octokit/rest": "^20.1.1",
+    "axios": "^1.7.2",
     "dotenv": "^16.4.5",
+    "got": "^14.4.1",
     "telegraf": "^4.16.3"
   }
 }
